@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國中時態複習 - Concept Questions & Time Lines</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .info-banner {
+            background: #fff3e0;
+            border-left: 5px solid #ff9800;
+            padding: 15px 20px;
+            margin: 20px;
+            border-radius: 5px;
+            color: #333;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-bottom: 2px solid #667eea;
+            flex-wrap: wrap;
+            overflow-x: auto;
+        }
+
+        .nav-tabs button {
+            flex: 1;
+            min-width: 140px;
+            padding: 15px 10px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+        }
+
+        .nav-tabs button:hover {
+            background: #efefef;
+            color: #667eea;
+        }
+
+        .nav-tabs button.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            background: white;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .tense-section {
+            margin-bottom: 40px;
+        }
+
+        .tense-title {
+            font-size: 2em;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .tense-subtitle {
+            font-size: 1.3em;
+            color: #764ba2;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .example-sentence {
+            background: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-size: 1.1em;
+        }
+
+        .example-sentence .text {
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+
+        .example-sentence .translation {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .timeline-container {
+            background: #f9f9f9;
+            padding: 30px 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border: 2px solid #eee;
+            overflow-x: auto;
+        }
+
+        svg {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .concept-box {
+            background: #f0f4ff;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .concept-box strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .concept-questions {
+            background: #fff9e6;
+            border-left: 5px solid #fbc02d;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .concept-questions h4 {
+            color: #f57f17;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .question-wrapper {
+            margin-bottom: 12px;
+        }
+
+        .question-item {
+            margin-bottom: 0;
+            padding: 12px 15px;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1px solid #fbc02d;
+            transition: all 0.3s;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .question-item:hover {
+            background: #fffbf0;
+            border-color: #f57f17;
+            box-shadow: 0 2px 5px rgba(245, 127, 23, 0.2);
+        }
+
+        .checkbox-icon {
+            flex-shrink: 0;
+            margin-top: 2px;
+            font-size: 1.2em;
+        }
+
+        .question-content {
+            flex: 1;
+        }
+
+        .question-item strong {
+            color: #333;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .chinese-q {
+            font-size: 0.75em;
+            margin-left: 8px;
+            opacity: 0.8;
+        }
+
+        .answer {
+            color: #f57f17;
+            font-style: italic;
+            margin-top: 10px;
+            display: none;
+            padding-top: 10px;
+            border-top: 1px dotted #fbc02d;
+        }
+
+        .answer.show {
+            display: block;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-table tr:hover {
+            background: #f5f5f5;
+        }
+
+        .tips-box {
+            background: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .tips-box strong {
+            color: #2e7d32;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .key-point {
+            background: #ffebee;
+            border-left: 5px solid #d32f2f;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            color: #c62828;
+        }
+
+        .interactive-check {
+            background: white;
+            border: 2px solid #667eea;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .check-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .check-button:hover {
+            background: #764ba2;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #c8e6c9;
+            color: #2e7d32;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background: #ffcdd2;
+            color: #c62828;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            .nav-tabs button { min-width: 100px; padding: 10px 8px; font-size: 0.85em; }
+            .tense-title { font-size: 1.5em; }
+            .content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 國中英文時態複習</h1>
+            <p>Concept Questions & Time Lines</p>
+            <p style="font-size: 0.95em; margin-top: 10px;">考試倒數 3 天 - 掌握時態本質</p>
+        </header>
+
+        <div class="info-banner">
+            ℹ️ 本講義採用Workman《Concept Questions & Time Lines》的教學方法，強調理解時態的<strong>本質含義</strong>而非只是記憶規則。
+        </div>
+
+        <div class="nav-tabs">
+            <button class="tab-btn active" data-tab="present-simple">現在簡單式</button>
+            <button class="tab-btn" data-tab="present-continuous">現在進行式</button>
+            <button class="tab-btn" data-tab="past-simple">過去簡單式</button>
+            <button class="tab-btn" data-tab="past-continuous">過去進行式</button>
+            <button class="tab-btn" data-tab="present-perfect">現在完成式</button>
+            <button class="tab-btn" data-tab="past-perfect">過去完成式</button>
+            <button class="tab-btn" data-tab="future-simple">未來簡單式</button>
+            <button class="tab-btn" data-tab="comparison">時態對比</button>
+            <button class="tab-btn" data-tab="quiz">互動檢測</button>
+        </div>
+
+        <div class="content">
+            <!-- Present Simple -->
+            <div id="present-simple" class="tab-content active">
+                <div class="tense-section">
+                    <h2 class="tense-title">Present Simple</h2>
+                    <h3 class="tense-subtitle">現在簡單式 (i) - 習慣與常規</h3>
+
+                    <div class="example-sentence">
+                        <div class="text">I get up at 6:00 every morning.</div>
+                        <div class="translation">我每天早上6點起床。</div>
+                    </div>
+
+                    <div class="timeline-container">
+                        <svg viewBox="0 0 600 200" height="150">
+                            <!-- Timeline -->
+                            <line x1="50" y1="100" x2="550" y2="100" stroke="#666" stroke-width="2"/>
+                            <!-- Now marker -->
+                            <line x1="300" y1="50" x2="300" y2="150" stroke="#667eea" stroke-width="3"/>
+                            <text x="300" y="40" text-anchor="middle" font-size="14" font-weight="bold" fill="#667eea">NOW</text>
+                            <!-- X marks for repeated actions -->
+                            <text x="100" y="130" text-anchor="middle" font-size="12" fill="#666">6:00am</text>
+                            <line x1="100" y1="95" x2="115" y2="110" stroke="#d32f2f" stroke-width="2"/>
+                            <line x1="115" y1="95" x2="100" y2="110" stroke="#d32f2f" stroke-width="2"/>
+
+                            <text x="200" y="130" text-anchor="middle" font-size="12" fill="#666">6:00am</text>
+                            <line x1="200" y1="95" x2="215" y2="110" stroke="#d32f2f" stroke-width="2"/>
+                            <line x1="215" y1="95" x2="200" y2="110" stroke="#d32f2f" stroke-width="2"/>
+
+                            <text x="300" y="130" text-anchor="middle" font-size="12" fill="#667eea">6:00am</text>
+                            <line x1="300" y1="95" x2="315" y2="110" stroke="#667eea" stroke-width="2"/>
+                            <line x1="315" y1="95" x2="300" y2="110" stroke="#667eea" stroke-width="2"/>
+
+                            <text x="400" y="130" text-anchor="middle" font-size="12" fill="#666">6:00am</text>
+                            <line x1="400" y1="95" x2="415" y2="110" stroke="#d32f2f" stroke-width="2"/>
+                            <line x1="415" y1="95" x2="400" y2="110" stroke="#d32f2f" stroke-width="2"/>
+
+                            <text x="500" y="130" text-anchor="middle" font-size="12" fill="#666">6:00am</text>
+                            <line x1="500" y1="95" x2="515" y2="110" stroke="#d32f2f" stroke-width="2"/>
+                            <line x1="515" y1="95" x2="500" y2="110" stroke="#d32f2f" stroke-width="2"/>
+
+                            <!-- Labels -->
+                            <text x="25" y="105" text-anchor="end" font-size="12" font-weight="bold" fill="#666">PAST</text>
+                            <text x="575" y="105" text-anchor="start" font-size="12" font-weight="bold" fill="#666">FUTURE</text>
+                        </svg>
+                    </div>
+
+                    <div class="concept-box">
+                        <strong>時態概念</strong>
+                        The Present Simple is used to talk about routines or habits.
+                        <br>(現在簡單式用來表達習慣性或經常重複的動作)
+                    </div>
+
+                    <div class="concept-questions">
+                        <h4>✓ 檢查理解</h4>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>1. Is this something I do every day? <span class="chinese-q">（我每天都做這件事嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>2. Is it a routine / habit? <span class="chinese-q">（這是一個習慣嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tips-box">
+                        <strong>重點記憶</strong>
+                        ✓ 時間詞：every day, always, usually, often, sometimes, never<br>
+                        ✓ 第三人稱單數動詞加 -s / -es<br>
+                        ✓ 表示客觀事實或永恆真理
+                    </div>
+                </div>
+
+                <div class="tense-section">
+                    <h3 class="tense-subtitle">Present Simple (ii) - 時間表未來</h3>
+
+                    <div class="example-sentence">
+                        <div class="text">The train leaves at 6:00 on Monday.</div>
+                        <div class="translation">火車週一早上6點出發。(時刻表上)</div>
+                    </div>
+
+                    <div class="concept-box">
+                        <strong>時態概念</strong>
+                        The Present Simple is used to talk about future events on a timetable or programme of events.
+                        <br>(用來談論時間表或安排的未來事件)
+                    </div>
+
+                    <div class="concept-questions">
+                        <h4>✓ 檢查理解</h4>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>1. Is it on a timetable? <span class="chinese-q">（這在時間表上嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>2. Does this happen at the same time every day? <span class="chinese-q">（這每天在同樣的時間發生嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Present Continuous -->
+            <div id="present-continuous" class="tab-content">
+                <div class="tense-section">
+                    <h2 class="tense-title">Present Continuous</h2>
+                    <h3 class="tense-subtitle">現在進行式 (i) - 現在正在發生</h3>
+
+                    <div class="example-sentence">
+                        <div class="text">"What are you doing?" "I'm listening to some music."</div>
+                        <div class="translation">"你在做什麼?" "我正在聽音樂。"</div>
+                    </div>
+
+                    <div class="timeline-container">
+                        <svg viewBox="0 0 600 170" height="130">
+                            <!-- Timeline -->
+                            <line x1="50" y1="75" x2="550" y2="75" stroke="#666" stroke-width="2"/>
+                            <!-- Now marker -->
+                            <line x1="300" y1="30" x2="300" y2="120" stroke="#667eea" stroke-width="3"/>
+                            <text x="300" y="20" text-anchor="middle" font-size="14" font-weight="bold" fill="#667eea">NOW</text>
+                            <!-- Wavy line for ongoing action -->
+                            <path d="M 150 75 Q 165 60 180 75 T 210 75 T 240 75 T 270 75 T 300 75 T 330 75 T 360 75 T 390 75 T 420 75"
+                                  fill="none" stroke="#4caf50" stroke-width="3"/>
+                            <text x="300" y="110" text-anchor="middle" font-size="12" fill="#666">listening now</text>
+                            <text x="25" y="80" text-anchor="end" font-size="12" font-weight="bold" fill="#666">PAST</text>
+                            <text x="575" y="80" text-anchor="start" font-size="12" font-weight="bold" fill="#666">FUTURE</text>
+                        </svg>
+                    </div>
+
+                    <div class="concept-box">
+                        <strong>時態概念</strong>
+                        The Present Continuous is used to talk about something that is in progress at the present moment.
+                    </div>
+
+                    <div class="concept-questions">
+                        <h4>✓ 檢查理解</h4>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>1. Is this happening now? <span class="chinese-q">（這現在正在發生嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tips-box">
+                        <strong>重點記憶</strong>
+                        ✓ 結構：am/is/are + V-ing<br>
+                        ✓ 時間詞：now, right now, at the moment<br>
+                        ✓ 強調動作正在進行中
+                    </div>
+                </div>
+
+                <div class="tense-section">
+                    <h3 class="tense-subtitle">Present Continuous (ii) - 日記未來</h3>
+
+                    <div class="example-sentence">
+                        <div class="text">I'm meeting Jane at 3:30 on Friday.</div>
+                        <div class="translation">我週五下午3:30要見Jane。(已經確定安排)</div>
+                    </div>
+
+                    <div class="concept-box">
+                        <strong>時態概念</strong>
+                        The Present Continuous is used to talk about definite future arrangements. (日記未來)
+                    </div>
+
+                    <div class="concept-questions">
+                        <h4>✓ 檢查理解</h4>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>1. Are we talking about the present or the future? <span class="chinese-q">（我們談論現在或未來？）</span></strong>
+                                    <div class="answer">(Future)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>2. Is it a definite arrangement? <span class="chinese-q">（這是確定的安排嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>3. So is it in my diary? <span class="chinese-q">（所以它在我的日記裡嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Past Simple -->
+            <div id="past-simple" class="tab-content">
+                <div class="tense-section">
+                    <h2 class="tense-title">Past Simple</h2>
+                    <h3 class="tense-subtitle">過去簡單式 - 過去完成的動作</h3>
+
+                    <div class="example-sentence">
+                        <div class="text">I saw a good film last night.</div>
+                        <div class="translation">我昨晚看了一部很好的電影。</div>
+                    </div>
+
+                    <div class="timeline-container">
+                        <svg viewBox="0 0 600 190" height="140">
+                            <!-- Timeline -->
+                            <line x1="50" y1="75" x2="550" y2="75" stroke="#666" stroke-width="2"/>
+                            <!-- Now marker -->
+                            <line x1="300" y1="30" x2="300" y2="120" stroke="#667eea" stroke-width="3"/>
+                            <text x="300" y="20" text-anchor="middle" font-size="14" font-weight="bold" fill="#667eea">NOW</text>
+                            <!-- Single cross for past action -->
+                            <line x1="150" y1="70" x2="170" y2="90" stroke="#d32f2f" stroke-width="2"/>
+                            <line x1="170" y1="70" x2="150" y2="90" stroke="#d32f2f" stroke-width="2"/>
+                            <text x="160" y="110" text-anchor="middle" font-size="12" fill="#666">saw film</text>
+                            <text x="160" y="130" text-anchor="middle" font-size="11" fill="#999">last night</text>
+
+                            <text x="25" y="80" text-anchor="end" font-size="12" font-weight="bold" fill="#666">PAST</text>
+                            <text x="575" y="80" text-anchor="start" font-size="12" font-weight="bold" fill="#666">FUTURE</text>
+                        </svg>
+                    </div>
+
+                    <div class="concept-box">
+                        <strong>時態概念</strong>
+                        The Past Simple is used to talk about things that happened in the past, are finished and have no connection with the present.
+                    </div>
+
+                    <div class="concept-questions">
+                        <h4>✓ 檢查理解</h4>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>1. Is the action in the past? <span class="chinese-q">（這個動作在過去嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>2. Is the action finished? <span class="chinese-q">（動作完成了嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>3. Is there any connection with the present? <span class="chinese-q">（和現在有任何聯繫嗎？）</span></strong>
+                                    <div class="answer">(No)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>4. Do we know when it happened? <span class="chinese-q">（我們知道它何時發生嗎？）</span></strong>
+                                    <div class="answer">(Yes, usually)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tips-box">
+                        <strong>重點記憶</strong>
+                        ✓ 規則動詞：+ -ed<br>
+                        ✓ 不規則動詞：go-went, see-saw, do-did, eat-ate<br>
+                        ✓ 時間詞：yesterday, last week, ago, in 2020
+                    </div>
+                </div>
+            </div>
+
+            <!-- Past Continuous -->
+            <div id="past-continuous" class="tab-content">
+                <div class="tense-section">
+                    <h2 class="tense-title">Past Continuous</h2>
+                    <h3 class="tense-subtitle">過去進行式 - 過去某時刻進行中</h3>
+
+                    <div class="example-sentence">
+                        <div class="text">I was watching TV at 8 o'clock.</div>
+                        <div class="translation">我在8點鐘時正在看電視。</div>
+                    </div>
+
+                    <div class="timeline-container">
+                        <svg viewBox="0 0 600 190" height="140">
+                            <!-- Timeline -->
+                            <line x1="50" y1="75" x2="550" y2="75" stroke="#666" stroke-width="2"/>
+                            <!-- Now marker -->
+                            <line x1="300" y1="30" x2="300" y2="120" stroke="#667eea" stroke-width="3"/>
+                            <text x="300" y="20" text-anchor="middle" font-size="14" font-weight="bold" fill="#667eea">NOW</text>
+
+                            <!-- Wavy line for ongoing action in past -->
+                            <path d="M 100 75 Q 115 60 130 75 T 160 75 T 190 75 T 220 75"
+                                  fill="none" stroke="#ff9800" stroke-width="3"/>
+                            <!-- Mark at 8 o'clock -->
+                            <line x1="160" y1="70" x2="160" y2="90" stroke="#ff9800" stroke-width="2" stroke-dasharray="5,5"/>
+                            <text x="160" y="110" text-anchor="middle" font-size="12" fill="#666">watching TV</text>
+                            <text x="160" y="130" text-anchor="middle" font-size="11" fill="#999">at 8 o'clock</text>
+
+                            <text x="25" y="80" text-anchor="end" font-size="12" font-weight="bold" fill="#666">PAST</text>
+                            <text x="575" y="80" text-anchor="start" font-size="12" font-weight="bold" fill="#666">FUTURE</text>
+                        </svg>
+                    </div>
+
+                    <div class="concept-box">
+                        <strong>時態概念</strong>
+                        The Past Continuous is used to talk about an action that was in progress at a past point in time.
+                    </div>
+
+                    <div class="concept-questions">
+                        <h4>✓ 檢查理解</h4>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>1. Did I start watching TV before 8 o'clock? <span class="chinese-q">（我在8點之前開始看電視嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>2. Was I still watching TV after 8 o'clock? <span class="chinese-q">（我在8點之後還在看電視嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>3. So was this action in progress at 8 o'clock? <span class="chinese-q">（所以這個動作在8點時進行中嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Present Perfect -->
+            <div id="present-perfect" class="tab-content">
+                <div class="tense-section">
+                    <h2 class="tense-title">Present Perfect Simple</h2>
+                    <h3 class="tense-subtitle">(i) 過去對現在有影響 - 未完成的時間段</h3>
+
+                    <div class="example-sentence">
+                        <div class="text">Have you seen Joe this morning?</div>
+                        <div class="translation">你今天早上見過Joe嗎？</div>
+                    </div>
+
+                    <div class="timeline-container">
+                        <svg viewBox="0 0 600 180" height="140">
+                            <!-- Timeline -->
+                            <line x1="50" y1="85" x2="550" y2="85" stroke="#666" stroke-width="2"/>
+                            <!-- Now marker -->
+                            <line x1="300" y1="30" x2="300" y2="140" stroke="#667eea" stroke-width="3"/>
+                            <text x="300" y="20" text-anchor="middle" font-size="14" font-weight="bold" fill="#667eea">NOW</text>
+
+                            <!-- Connection from past to now -->
+                            <path d="M 150 85 Q 200 50 300 30" fill="none" stroke="#4caf50" stroke-width="3" stroke-dasharray="5,5"/>
+                            <text x="220" y="50" text-anchor="middle" font-size="11" fill="#4caf50">still relevant!</text>
+
+                            <!-- Unfinished period box -->
+                            <rect x="100" y="60" width="200" height="20" fill="none" stroke="#2196f3" stroke-width="2" stroke-dasharray="5,5"/>
+                            <text x="200" y="80" text-anchor="middle" font-size="11" fill="#1976d2">this morning (still happening)</text>
+
+                            <!-- Time markers -->
+                            <text x="100" y="110" text-anchor="middle" font-size="11" fill="#666">12:00 midnight</text>
+                            <text x="300" y="110" text-anchor="middle" font-size="11" fill="#667eea">12:00 midday</text>
+
+                            <text x="25" y="90" text-anchor="end" font-size="12" font-weight="bold" fill="#666">PAST</text>
+                            <text x="575" y="90" text-anchor="start" font-size="12" font-weight="bold" fill="#666">FUTURE</text>
+                        </svg>
+                    </div>
+
+                    <div class="concept-box">
+                        <strong>時態概念</strong>
+                        The Present Perfect connects the past to the present. It shows that something happened in an unfinished period that <strong>still affects the present moment</strong>. It's not about whether the action is "finished" - it's about whether the time period is still relevant NOW.
+                        <br><br><strong>核心：過去 → 現在的連結，不是「完成」</strong>
+                    </div>
+
+                    <div class="concept-questions">
+                        <h4>✓ 檢查理解</h4>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>1. Is this time period still continuing RIGHT NOW? <span class="chinese-q">（這個時間段現在還在進行嗎？）</span></strong>
+                                    <div class="answer">(Yes - it's still morning now)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>2. Does it connect to the present moment? <span class="chinese-q">（它與現在時刻相連嗎？）</span></strong>
+                                    <div class="answer">(Yes - that's the key!)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>3. What happens when we say it in the afternoon? <span class="chinese-q">（在下午說呢？）</span></strong>
+                                    <div class="answer">(We say "Did you see Joe this morning?" - Past Simple - because morning is no longer relevant to NOW)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tense-section">
+                    <h3 class="tense-subtitle">(ii) 未完成的過去 - 持續使用</h3>
+
+                    <div class="example-sentence">
+                        <div class="text">She has worked here for 3 years.</div>
+                        <div class="translation">她在這裡工作3年了。(還在工作)</div>
+                    </div>
+
+                    <div class="timeline-container">
+                        <svg viewBox="0 0 600 180" height="140">
+                            <!-- Timeline -->
+                            <line x1="50" y1="70" x2="550" y2="70" stroke="#666" stroke-width="2"/>
+                            <!-- Now marker -->
+                            <line x1="300" y1="30" x2="300" y2="110" stroke="#667eea" stroke-width="3"/>
+                            <text x="300" y="20" text-anchor="middle" font-size="13" font-weight="bold" fill="#667eea">NOW</text>
+
+                            <!-- Duration line -->
+                            <line x1="100" y1="70" x2="300" y2="70" stroke="#4caf50" stroke-width="3"/>
+                            <text x="200" y="95" text-anchor="middle" font-size="11" fill="#666">for 3 years</text>
+                            <text x="100" y="120" text-anchor="middle" font-size="10" fill="#999">3 years ago</text>
+
+                            <text x="25" y="75" text-anchor="end" font-size="12" font-weight="bold" fill="#666">PAST</text>
+                            <text x="575" y="75" text-anchor="start" font-size="12" font-weight="bold" fill="#666">FUTURE</text>
+                        </svg>
+                    </div>
+
+                    <div class="concept-box">
+                        <strong>時態概念</strong>
+                        The Present Perfect Simple is used to talk about the duration of an action that started in the past and continues up to and includes the present.
+                    </div>
+
+                    <div class="concept-questions">
+                        <h4>✓ 檢查理解</h4>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>1. Do we know when the action started? <span class="chinese-q">（我們知道動作何時開始嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>2. Does the action continue up to and include the present? <span class="chinese-q">（動作一直進行到現在嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>3. Does she still work there? <span class="chinese-q">（她現在還在那裡工作嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Past Perfect -->
+            <div id="past-perfect" class="tab-content">
+                <div class="tense-section">
+                    <h2 class="tense-title">Past Perfect Simple</h2>
+                    <h3 class="tense-subtitle">過去完成式 - 兩個過去動作的先後順序</h3>
+
+                    <div class="key-point" style="margin-bottom: 20px;">
+                        <strong>🔑 重點：過去完成式一定要有「兩個過去動作」</strong><br>
+                        用來表示在<strong>過去的某個時間點之前</strong>已經完成的動作
+                    </div>
+
+                    <div class="example-sentence">
+                        <div class="text">When I arrived at the station, the train had already left.</div>
+                        <div class="translation">當我到達車站時，火車已經離開了。</div>
+                        <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #e3f2fd; font-size: 0.9em; color: #1976d2;">
+                            <strong>兩個動作：</strong><br>
+                            ① 火車離開 (had left) - 第一個發生 ← 過去完成式<br>
+                            ② 我到達 (arrived) - 第二個發生 ← 過去簡單式
+                        </div>
+                    </div>
+
+                    <div class="timeline-container">
+                        <svg viewBox="0 0 600 220" height="175">
+                            <!-- Timeline -->
+                            <line x1="50" y1="85" x2="550" y2="85" stroke="#666" stroke-width="2"/>
+                            <!-- Now marker -->
+                            <line x1="300" y1="30" x2="300" y2="140" stroke="#667eea" stroke-width="3"/>
+                            <text x="300" y="20" text-anchor="middle" font-size="14" font-weight="bold" fill="#667eea">NOW</text>
+
+                            <!-- Past Perfect action (earlier) -->
+                            <line x1="120" y1="70" x2="145" y2="90" stroke="#e91e63" stroke-width="2"/>
+                            <line x1="145" y1="70" x2="120" y2="90" stroke="#e91e63" stroke-width="2"/>
+                            <text x="130" y="110" text-anchor="middle" font-size="11" fill="#666">train left</text>
+
+                            <!-- Past Simple action (later but still past) -->
+                            <line x1="180" y1="70" x2="205" y2="90" stroke="#d32f2f" stroke-width="2"/>
+                            <line x1="205" y1="70" x2="180" y2="90" stroke="#d32f2f" stroke-width="2"/>
+                            <text x="190" y="110" text-anchor="middle" font-size="11" fill="#666">I arrived</text>
+
+                            <!-- Two Actions Bracket -->
+                            <g stroke="#764ba2" stroke-width="2.5" fill="none">
+                                <!-- Left vertical line -->
+                                <line x1="110" y1="125" x2="110" y2="145"/>
+                                <!-- Bottom horizontal line -->
+                                <line x1="110" y1="145" x2="210" y2="145"/>
+                                <!-- Right vertical line -->
+                                <line x1="210" y1="145" x2="210" y2="125"/>
+                            </g>
+                            <!-- Number 2 -->
+                            <text x="160" y="165" text-anchor="middle" font-size="20" font-weight="bold" fill="#764ba2">2個動作</text>
+                            <!-- Action details -->
+                            <text x="50" y="180" font-size="11" font-weight="bold" fill="#e91e63">① 火車離開 (had left)</text>
+                            <text x="270" y="180" font-size="11" font-weight="bold" fill="#d32f2f">② 我到達 (arrived)</text>
+
+                            <text x="25" y="90" text-anchor="end" font-size="12" font-weight="bold" fill="#666">PAST</text>
+                            <text x="575" y="90" text-anchor="start" font-size="12" font-weight="bold" fill="#666">FUTURE</text>
+                        </svg>
+                    </div>
+
+                    <div class="concept-box">
+                        <strong>時態概念</strong>
+                        The Past Perfect is used to talk about one action in the past that happened before another action in the past. It shows which action happened first.
+                    </div>
+
+                    <div class="concept-questions">
+                        <h4>✓ 檢查理解</h4>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>1. Are both actions in the past? <span class="chinese-q">（兩個動作都在過去嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>2. Did one action finish before the other action started? <span class="chinese-q">（一個動作在另一個開始之前完成了嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>3. So is the Past Perfect action the earlier one? <span class="chinese-q">（所以過去完成式的動作是較早發生的嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tips-box">
+                        <strong>重點記憶</strong>
+                        ✓ 結構：had + 過去分詞<br>
+                        ✓ 用於表達<strong>過去時間</strong>中的先後順序<br>
+                        ✓ 常與 Past Simple 搭配使用<br>
+                        ✓ 時間詞：by the time, when, after, before
+                    </div>
+                </div>
+            </div>
+
+            <!-- Future Simple -->
+            <div id="future-simple" class="tab-content">
+                <div class="tense-section">
+                    <h2 class="tense-title">Future Simple</h2>
+                    <h3 class="tense-subtitle">(i) 即時決定 - 臨時決定</h3>
+
+                    <div class="example-sentence">
+                        <div class="text">"There are no buses today." "OK, I'll take a taxi."</div>
+                        <div class="translation">"今天沒有公車。" "好吧,我搭計程車。"</div>
+                    </div>
+
+                    <div class="timeline-container">
+                        <svg viewBox="0 0 600 170" height="130">
+                            <!-- Timeline -->
+                            <line x1="50" y1="75" x2="550" y2="75" stroke="#666" stroke-width="2"/>
+                            <!-- Now marker -->
+                            <line x1="300" y1="30" x2="300" y2="120" stroke="#667eea" stroke-width="3"/>
+                            <text x="300" y="20" text-anchor="middle" font-size="13" font-weight="bold" fill="#667eea">NOW</text>
+
+                            <!-- Arc for future action -->
+                            <path d="M 300 75 Q 400 30 450 75" fill="none" stroke="#ff6b6b" stroke-width="2.5"/>
+                            <text x="400" y="25" text-anchor="middle" font-size="11" fill="#ff6b6b">take a taxi</text>
+                            <text x="300" y="100" text-anchor="middle" font-size="11" fill="#666">decision made</text>
+                            <text x="300" y="115" text-anchor="middle" font-size="11" fill="#666">at the moment</text>
+
+                            <text x="25" y="80" text-anchor="end" font-size="12" font-weight="bold" fill="#666">PAST</text>
+                            <text x="575" y="80" text-anchor="start" font-size="12" font-weight="bold" fill="#666">FUTURE</text>
+                        </svg>
+                    </div>
+
+                    <div class="concept-box">
+                        <strong>時態概念</strong>
+                        The Future Simple is used to express a decision made at the moment of speaking (spontaneous decision).
+                    </div>
+
+                    <div class="concept-questions">
+                        <h4>✓ 檢查理解</h4>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>1. Did I decide now or in the past? <span class="chinese-q">（我現在決定還是過去決定？）</span></strong>
+                                    <div class="answer">(Now)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>2. Is it a spontaneous decision? <span class="chinese-q">（這是臨時決定嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tense-section">
+                    <h3 class="tense-subtitle">(ii) 不可避免的事實</h3>
+
+                    <div class="example-sentence">
+                        <div class="text">I'll be thirty in July.</div>
+                        <div class="translation">我將在七月滿三十歲。(無法改變)</div>
+                    </div>
+
+                    <div class="concept-box">
+                        <strong>時態概念</strong>
+                        The Future Simple is used to talk about inevitable future events - things in the future that cannot be changed.
+                    </div>
+
+                    <div class="concept-questions">
+                        <h4>✓ 檢查理解</h4>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>1. Are we talking about the future? <span class="chinese-q">（我們談論未來嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>2. Can I change this future fact? <span class="chinese-q">（我能改變這個未來的事實嗎？）</span></strong>
+                                    <div class="answer">(No)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="question-item" onclick="toggleQuestion(this)">
+                                <span class="checkbox-icon">☐</span>
+                                <div class="question-content">
+                                    <strong>3. Is it inevitable? <span class="chinese-q">（這是不可避免的嗎？）</span></strong>
+                                    <div class="answer">(Yes)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison -->
+            <div id="comparison" class="tab-content">
+                <div class="tense-section">
+                    <h2 class="tense-title">關鍵時態對比</h2>
+
+                    <h3 style="color: #764ba2; margin: 20px 0 15px 0;">1️⃣ Present Simple vs Present Continuous</h3>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>時態</th>
+                            <th>例句</th>
+                            <th>含義</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Simple</strong></td>
+                            <td>I eat dinner every day.</td>
+                            <td>習慣性 (經常做)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Continuous</strong></td>
+                            <td>I am eating dinner now.</td>
+                            <td>現在進行 (正在做)</td>
+                        </tr>
+                    </table>
+
+                    <h3 style="color: #764ba2; margin: 20px 0 15px 0;">2️⃣ Past Simple vs Present Perfect</h3>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>時態</th>
+                            <th>例句</th>
+                            <th>含義</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Past Simple</strong></td>
+                            <td>I ate lunch at 12 o'clock.</td>
+                            <td>完全過去的事實 (不重要現在的狀態)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Present Perfect</strong></td>
+                            <td>I have already eaten, so I'm full.</td>
+                            <td>對現在有影響 (影響現在的狀態)</td>
+                        </tr>
+                    </table>
+
+                    <h3 style="color: #764ba2; margin: 20px 0 15px 0;">3️⃣ be going to vs will</h3>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>形式</th>
+                            <th>例句</th>
+                            <th>用途</th>
+                        </tr>
+                        <tr>
+                            <td><strong>be going to</strong></td>
+                            <td>Look! It's going to rain.</td>
+                            <td>已計畫或明顯將發生的事 (看得出來)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>will</strong></td>
+                            <td>There are no buses. I'll take a taxi.</td>
+                            <td>臨時決定 (現在才決定)</td>
+                        </tr>
+                    </table>
+
+                    <h3 style="color: #764ba2; margin: 20px 0 15px 0;">4️⃣ 完成式對比</h3>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>時態</th>
+                            <th>例句</th>
+                            <th>核心含義</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Present Perfect</strong></td>
+                            <td>I have eaten.</td>
+                            <td>過去完成,對現在有影響</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Past Perfect</strong></td>
+                            <td>I had eaten before he arrived.</td>
+                            <td>表達過去的先後順序(兩個過去動作)</td>
+                        </tr>
+                    </table>
+
+                    <div class="key-point">
+                        <strong>🔑 最重要的區別</strong><br>
+                        不要只看形式 (verb),要看<strong>含義</strong> (meaning)!<br>
+                        • Simple = 完成/習慣<br>
+                        • Continuous = 進行/未完成<br>
+                        • Perfect = 對現在有影響 / 過去或未來的先後順序
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Quiz -->
+            <div id="quiz" class="tab-content">
+                <div class="tense-section">
+                    <h2 class="tense-title">互動檢測</h2>
+                    <p style="margin-bottom: 20px;">10 題概念題 - 檢測你是否真正理解每個時態的含義</p>
+
+                    <!-- Q1: Present Simple -->
+                    <div class="interactive-check">
+                        <strong>Q1 (Present Simple): He gets up at 7 o'clock every day.</strong>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q1" value="a">
+                            A. He is getting up right now (現在正在起床)
+                        </label>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q1" value="b">
+                            B. This is a habitual action, he does it regularly (習慣性動作)
+                        </label>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q1" value="c">
+                            C. He only gets up at 7 o'clock today (只有今天)
+                        </label>
+                        <button class="check-button" onclick="checkQ1()">Check Answer</button>
+                        <div class="feedback" id="feedback1"></div>
+                    </div>
+
+                    <!-- Q2: Present Continuous -->
+                    <div class="interactive-check">
+                        <strong>Q2 (Present Continuous): She is doing her homework now.</strong>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q2" value="a">
+                            A. She does homework habitually (習慣性)
+                        </label>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q2" value="b">
+                            B. The action is happening at this moment (正在進行)
+                        </label>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q2" value="c">
+                            C. She has already finished the homework (已完成)
+                        </label>
+                        <button class="check-button" onclick="checkQ2()">Check Answer</button>
+                        <div class="feedback" id="feedback2"></div>
+                    </div>
+
+                    <!-- Q3: Past Simple -->
+                    <div class="interactive-check">
+                        <strong>Q3 (Past Simple): I saw a good film last night.</strong>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q3" value="a">
+                            A. I am still watching the film now (現在還在看)
+                        </label>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q3" value="b">
+                            B. The action is finished, unrelated to now, with a specific time (完全過去)
+                        </label>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q3" value="c">
+                            C. I watch films habitually (習慣性)
+                        </label>
+                        <button class="check-button" onclick="checkQ3()">Check Answer</button>
+                        <div class="feedback" id="feedback3"></div>
+                    </div>
+
+                    <!-- Q4: Past Continuous -->
+                    <div class="interactive-check">
+                        <strong>Q4 (Past Continuous): I was watching TV when the phone rang.</strong>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q4" value="a">
+                            A. Both actions happened in the past (都在過去)
+                        </label>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q4" value="b">
+                            B. Watching TV is the longer background action, the phone call is the shorter interruption (背景+中斷)
+                        </label>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q4" value="c">
+                            C. It was a habit in the past (過去習慣)
+                        </label>
+                        <button class="check-button" onclick="checkQ4()">Check Answer</button>
+                        <div class="feedback" id="feedback4"></div>
+                    </div>
+
+                    <!-- Q5: Present Perfect -->
+                    <div class="interactive-check">
+                        <strong>Q5 (Present Perfect): She has lived here for 5 years.</strong>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q5" value="a">
+                            A. Is she still living here? (現在還住嗎)
+                        </label>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q5" value="b">
+                            B. When did she come? (何時來的)
+                        </label>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q5" value="c">
+                            C. How long has she lived here? (住多久)
+                        </label>
+                        <button class="check-button" onclick="checkQ5()">Check Answer</button>
+                        <div class="feedback" id="feedback5"></div>
+                    </div>
+
+                    <!-- Q6: Past Perfect -->
+                    <div class="interactive-check">
+                        <strong>Q6 (Past Perfect): When I arrived, the train had already left.</strong>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q6" value="a">
+                            A. Both actions happened at the same time (同時)
+                        </label>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q6" value="b">
+                            B. The train left (had left) first, then I arrived (arrived) (火車先離開)
+                        </label>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q6" value="c">
+                            C. I arrived (arrived) first, then the train left (had left) (我先到達)
+                        </label>
+                        <button class="check-button" onclick="checkQ6()">Check Answer</button>
+                        <div class="feedback" id="feedback6"></div>
+                    </div>
+
+                    <!-- Q7: Future Simple -->
+                    <div class="interactive-check">
+                        <strong>Q7 (Future Simple): There are no buses. I'll take a taxi.</strong>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q7" value="a">
+                            A. I planned it in advance (提前計畫)
+                        </label>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q7" value="b">
+                            B. A spontaneous decision made at this moment (臨時決定)
+                        </label>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q7" value="c">
+                            C. I predict the taxi will come (預測)
+                        </label>
+                        <button class="check-button" onclick="checkQ7()">Check Answer</button>
+                        <div class="feedback" id="feedback7"></div>
+                    </div>
+
+                    <!-- Q8: Comparison -->
+                    <div class="interactive-check">
+                        <strong>Q8 (Tense Comparison): Which sentence emphasizes the result of an action on the present?</strong>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q8" value="a">
+                            A. I went to Paris last year. (去年去了)
+                        </label>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q8" value="b">
+                            B. I have been to Paris. (去過)
+                        </label>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q8" value="c">
+                            C. I go to Paris every year. (每年去)
+                        </label>
+                        <button class="check-button" onclick="checkQ8()">Check Answer</button>
+                        <div class="feedback" id="feedback8"></div>
+                    </div>
+
+                    <!-- Q9: Present Perfect vs Past Simple -->
+                    <div class="interactive-check">
+                        <strong>Q9 (Perfect Tense Comparison): Which sentence means I am STILL living in Japan NOW?</strong>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q9" value="a">
+                            A. I lived in Japan for 3 years.
+                        </label>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q9" value="b">
+                            B. I have lived in Japan for 3 years.
+                        </label>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q9" value="c">
+                            C. I used to live in Japan for 3 years.
+                        </label>
+                        <button class="check-button" onclick="checkQ9()">Check Answer</button>
+                        <div class="feedback" id="feedback9"></div>
+                    </div>
+
+                    <!-- Q10: Present Perfect vs Past Perfect -->
+                    <div class="interactive-check">
+                        <strong>Q10 (Perfect Tense Comparison): Present Perfect vs Past Perfect</strong>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q10" value="a">
+                            A. Present Perfect connects past to present; Past Perfect connects two past actions (過去→現在 vs 過去→過去)
+                        </label>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q10" value="b">
+                            B. Both describe completed actions with no difference (都是完成動作)
+                        </label>
+                        <label style="display: block; margin: 10px 0;">
+                            <input type="radio" name="q10" value="c">
+                            C. Past Perfect is for distant past, Present Perfect is for recent past (時間距離)
+                        </label>
+                        <button class="check-button" onclick="checkQ10()">Check Answer</button>
+                        <div class="feedback" id="feedback10"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle Question (Checkbox + Answer + Status)
+        function toggleQuestion(element) {
+            // Toggle checkbox
+            const checkboxIcon = element.querySelector('.checkbox-icon');
+            if (checkboxIcon) {
+                checkboxIcon.textContent = checkboxIcon.textContent === '☐' ? '☑' : '☐';
+            }
+
+            // Toggle answer
+            const answer = element.querySelector('.answer');
+            if (answer) {
+                answer.classList.toggle('show');
+            }
+
+            // Toggle status badge
+            const wrapper = element.closest('.question-wrapper');
+            if (wrapper) {
+                const badge = wrapper.querySelector('.status-badge');
+                if (badge) {
+                    if (badge.textContent === 'not done') {
+                        badge.textContent = 'done';
+                        badge.classList.add('done');
+                    } else {
+                        badge.textContent = 'not done';
+                        badge.classList.remove('done');
+                    }
+                }
+            }
+        }
+
+        // Toggle Answer Display (for backward compatibility)
+        function toggleAnswer(element) {
+            const answer = element.querySelector('.answer');
+            if (answer) {
+                answer.classList.toggle('show');
+            }
+        }
+
+        // Tab switching
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+                window.scrollTo(0, 0);
+            });
+        });
+
+        // Quiz functions
+        function checkQ1() {
+            const selected = document.querySelector('input[name="q1"]:checked');
+            const feedback = document.getElementById('feedback1');
+            if (!selected) {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '請選擇一個答案';
+            } else if (selected.value === 'a') {
+                feedback.className = 'feedback correct';
+                feedback.textContent = '✓ 正確! 這是最重要的概念問題。現在完成式的關鍵是「她現在還住在這裡」,所以她現在還在做這個動作。';
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '✗ 再想想。B選項會問出「何時」,但現在完成式不強調具體時間。C選項是正確的信息,但不是最好的概念檢查。';
+            }
+        }
+
+        function checkQ2() {
+            const selected = document.querySelector('input[name="q2"]:checked');
+            const feedback = document.getElementById('feedback2');
+            if (!selected) {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '請選擇一個答案';
+            } else if (selected.value === 'b') {
+                feedback.className = 'feedback correct';
+                feedback.textContent = '✓ 正確! 過去簡單式的三個核心特點：(1)完成的動作 (2)與現在無關 (3)我們知道具體時間(last night)';
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '✗ 不對。A選項是現在完成式。C選項是現在簡單式。過去簡單式表達的是完全過去的事件。';
+            }
+        }
+
+        function checkQ3() {
+            const selected = document.querySelector('input[name="q3"]:checked');
+            const feedback = document.getElementById('feedback3');
+            if (!selected) {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '請選擇一個答案';
+            } else if (selected.value === 'b') {
+                feedback.className = 'feedback correct';
+                feedback.textContent = '✓ 正確! 過去簡單式的三個核心特點：(1)完成的動作 (2)與現在無關 (3)我們知道具體時間(last night)';
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '✗ 不對。A選項是現在完成式。C選項是現在簡單式。過去簡單式表達的是完全過去的事件。';
+            }
+        }
+
+        function checkQ4() {
+            const selected = document.querySelector('input[name="q4"]:checked');
+            const feedback = document.getElementById('feedback4');
+            if (!selected) {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '請選擇一個答案';
+            } else if (selected.value === 'b') {
+                feedback.className = 'feedback correct';
+                feedback.textContent = '✓ 正確! 這是過去進行式最關鍵的用法：一個較長的背景動作(watching TV)被一個較短的中斷動作(phone rang)打斷。';
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '✗ 不對。A選項是表面理由,但沒有解釋為什麼用進行式。C選項是used to的用法。';
+            }
+        }
+
+        function checkQ5() {
+            const selected = document.querySelector('input[name="q5"]:checked');
+            const feedback = document.getElementById('feedback5');
+            if (!selected) {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '請選擇一個答案';
+            } else if (selected.value === 'a') {
+                feedback.className = 'feedback correct';
+                feedback.textContent = '✓ 正確! 這是最重要的概念問題。現在完成式的關鍵是「她現在還住在這裡」,證明動作對現在有影響。';
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '✗ 再想想。B選項會問出「何時」,但現在完成式不強調具體時間。C選項是正確的資訊,但不是最好的概念檢查。';
+            }
+        }
+
+        function checkQ6() {
+            const selected = document.querySelector('input[name="q6"]:checked');
+            const feedback = document.getElementById('feedback6');
+            if (!selected) {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '請選擇一個答案';
+            } else if (selected.value === 'b') {
+                feedback.className = 'feedback correct';
+                feedback.textContent = '✓ 正確! 過去完成式用來表達<strong>兩個過去動作的先後順序</strong>。火車離開(had left)是<strong>第一個</strong>,然後我到達(arrived)。had表示更早發生。';
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '✗ 不對。過去完成式必須要有<strong>兩個過去動作</strong>。A選項錯誤，時間有先後。C選項順序相反。';
+            }
+        }
+
+        function checkQ7() {
+            const selected = document.querySelector('input[name="q7"]:checked');
+            const feedback = document.getElementById('feedback7');
+            if (!selected) {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '請選擇一個答案';
+            } else if (selected.value === 'b') {
+                feedback.className = 'feedback correct';
+                feedback.textContent = '✓ 正確! 這是未來簡單式的典型用法：說話者在聽到「沒有公車」後，當下做出的臨時決定。不是提前計畫。';
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '✗ 不對。A選項應該用「be going to」。C選項是預測,但這裡是臨時決定。句型「There... I\'ll...」表示即時決定。';
+            }
+        }
+
+        function checkQ8() {
+            const selected = document.querySelector('input[name="q8"]:checked');
+            const feedback = document.getElementById('feedback8');
+            if (!selected) {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '請選擇一個答案';
+            } else if (selected.value === 'b') {
+                feedback.className = 'feedback correct';
+                feedback.textContent = '✓ 正確! \"I have been to Paris\"強調過去的經歷對現在的影響(我現在已經去過)。A選項只說過去的事實。C選項是習慣。';
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '✗ 不對。A選項沒有連接到現在。C選項是現在簡單式的習慣用法。現在完成式強調過去對現在的相關性。';
+            }
+        }
+
+        function checkQ9() {
+            const selected = document.querySelector('input[name="q9"]:checked');
+            const feedback = document.getElementById('feedback9');
+            if (!selected) {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '請選擇一個答案';
+            } else if (selected.value === 'b') {
+                feedback.className = 'feedback correct';
+                feedback.textContent = '✓ 正確! B「I have lived in Japan for 3 years」表示我現在仍然住在日本。A選項「I lived」表示我已經搬走了,與現在無關。這正是現在完成式的核心：動作對現在有影響。';
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '✗ 不對。A選項是過去簡單式,表示已結束且與現在無關。C選項是過去進行式。關鍵在於「現在仍在進行」vs「已完全過去」。';
+            }
+        }
+
+        function checkQ10() {
+            const selected = document.querySelector('input[name="q10"]:checked');
+            const feedback = document.getElementById('feedback10');
+            if (!selected) {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '請選擇一個答案';
+            } else if (selected.value === 'a') {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = '✓ 正確! 這是兩個完成式的根本區別：<br>• 現在完成式 = 過去→現在(一個參考點)<br>• 過去完成式 = 過去→過去(兩個參考點)<br>例：When I arrived, the train had left.';
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = '✗ 不對。B選項忽視了它們的重要區別。C選項是錯誤的;時間遠近不是判準,而是參考點的數量不同。';
+            }
+        }
+    </script>
+</body>
+</html>
